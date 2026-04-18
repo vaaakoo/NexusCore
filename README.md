@@ -24,7 +24,7 @@ Add the following to your `nuget.config`:
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
   <packageSources>
-    <add key="NexusCore" value="https://nuget.pkg.github.com/vaoakoo/index.json" />
+    <add key="NexusCore" value="https://nuget.pkg.github.com/vaaakoo/index.json" />
   </packageSources>
 </configuration>
 ```
