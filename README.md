@@ -1,51 +1,66 @@
-# Nexus.Core — Senior-Level .NET 10 Infrastructure Framework
+# Nexus.Core Infrastructure Framework
 
-![Build Status](https://github.com/vaaakoo/NexusCore/actions/workflows/ci.yml/badge.svg)
+Nexus.Core is a high-performance, production-grade infrastructure library for .NET 10 Web APIs. It provides a standardized foundation for enterprise applications, centralizing cross-cutting concerns such as logging, security, and error handling into a modular and discoverable API.
 
-```csharp
-// Program.cs — that's literally it.
-builder.AddNexusInfrastructure();
+---
+
+## Core Capabilities
+
+- **Structured Logging**: Pre-configured Serilog integration with daily-rolling file sinks and PII masking.
+- **PII Protection**: Integrated data masking for both log streams and JSON API responses using the `[SensitiveData]` attribute and `LogMaskingEnricher`.
+- **Standardized Security**: Robust JWT Bearer authentication and authorization with custom rejection handlers.
+- **Functional Error Handling**: Implementation of the `Result<T>` pattern to facilitate Railway Oriented Programming and consistent API contracts.
+- **Global Exception Management**: Centralized middleware to intercept unhandled exceptions, ensuring secure error reporting and automated diagnostic logging (TraceId).
+
+---
+
+## Installation
+
+The package is available via the GitHub Packages Registry.
+
+### 1. Configure Package Source
+Add the following to your `nuget.config`:
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <packageSources>
+    <add key="NexusCore" value="https://nuget.pkg.github.com/vaoakoo/index.json" />
+  </packageSources>
+</configuration>
+```
+
+### 2. Add Package
+```bash
+dotnet add package Nexus.Core.Infrastructure
 ```
 
 ---
 
-## 🚀 Overview
+## Getting Started
 
-**Nexus.Core** is a production-ready infrastructure framework designed for .NET 10 Web APIs. It eliminates boilerplate by providing pre-wired, senior-level cross-cutting concerns with zero manual configuration required.
-
-### Key Pillars
-- **🏗️ Structured Logging**: Serilog configured with automatic PII masking (01*******89), daily-rolling file sinks, and thread/trace enrichment.
-- **🛡️ Data Masking**: Native attribute-based masking (`[SensitiveData]`) for JSON responses and regex-based masking for log streams.
-- **🔒 JWT Security**: Robust authentication/authorization with custom JSON 401/403 responses and secure-by-default metadata.
-- **⚡ Functional Errors**: A generic `Result<T>` success/failure monad for Railway Oriented Programming.
-- **🚑 Global Safety Net**: Middleware that catches all unhandled exceptions, logs them with `TraceId`, and returns standardised JSON contracts.
-
----
-
-## 🛠️ Quick Start
-
-### 1. Configure the basics
-Add your settings to `appsettings.json`:
+### Configuration
+Configure your security and logging settings in `appsettings.json`:
 ```json
 {
   "Jwt": {
-    "SecretKey": "<secure-32-char-key>",
+    "SecretKey": "YOUR_SECURE_32_CHARACTER_KEY",
     "Issuer": "nexus-api",
     "Audience": "nexus-clients"
   }
 }
 ```
 
-### 2. Activate the Infrastructure
+### Initialization
+Register and activate the infrastructure in your `Program.cs`:
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
 
-// ① One line to wire Logging, JWT, Validation, and OpenAPI
+// Register Infrastructure (Logging, Security, Validation, OpenAPI)
 builder.AddNexusInfrastructure();
 
 var app = builder.Build();
 
-// ② One line to activate the middleware pipeline
+// Activate Middleware Pipeline
 app.UseNexusInfrastructure();
 
 app.Run();
@@ -53,46 +68,32 @@ app.Run();
 
 ---
 
-## 💎 Advanced Features
+## Features
 
-### PII Protection (Masking)
-Decorate properties with `[SensitiveData]` to ensure they are masked in API responses.
+### PII Masking
+Properties marked with `[SensitiveData]` are automatically masked in JSON responses.
 ```csharp
-public record User(string Name, [property: SensitiveData] string PersonalId);
+public record UserInfo(string Name, [property: SensitiveData] string PersonalId);
 ```
-*Logs will also automatically mask 11-digit numbers and field names like 'PersonalId'.*
 
 ### Functional Chaining
+Utilize the `Result<T>` type to chain business operations without deeply nested try-catch blocks.
 ```csharp
-public Result<User> GetUser(Guid id) =>
-    _db.Find(id).ToResult()
-       .Map(u => EnrichData(u))
-       .Bind(u => ValidateStatus(u));
+public Result<User> ProcessUser(Guid id) =>
+    _repository.Get(id)
+        .Map(user => ApplyBusinessRules(user))
+        .Bind(user => SaveChanges(user));
 ```
 
 ---
 
-## 🧪 Testing & CI
-
-The framework includes a comprehensive test suite (xUnit + FluentAssertions + NSubstitute) covering:
-- `Result<T>` functional logic (100% coverage)
-- Global Exception Middleware & TraceId logging
-- Automatic Validator Filters
-- JWT Service Registration
-
-**Run tests locally:**
-```bash
-dotnet test Nexus.Core.slnx
-```
+## Technical Standards
+- **Target Framework**: .NET 10
+- **Language Level**: C# 14
+- **Architecture**: Clean Architecture / Ports & Adapters
+- **Quality Assurance**: 100% coverage of core functional logic via xUnit and NSubstitute.
 
 ---
 
-## 🏛️ Architecture Decisions
-- **.NET 10 & C# 14**: Utilising Primary Constructors and File-scoped namespaces.
-- **Clean Architecture**: Strong decoupling of infrastructure from business logic.
-- **FrameworkReference**: Using `Microsoft.AspNetCore.App` in ClassLibs to stay lean.
-
----
-
-## 📜 License
-MIT — *Built with zero tolerance for boilerplate.*
+## License
+Licensed under the MIT License.

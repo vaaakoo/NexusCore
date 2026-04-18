@@ -10,3 +10,4 @@ C:\Users\vjani\Desktop\projects\NugetPro\src\Nexus.Core.Infrastructure\obj\Relea
 C:\Users\vjani\Desktop\projects\NugetPro\src\Nexus.Core.Infrastructure\obj\Release\net10.0\refint\Nexus.Core.Infrastructure.dll
 C:\Users\vjani\Desktop\projects\NugetPro\src\Nexus.Core.Infrastructure\obj\Release\net10.0\Nexus.Core.Infrastructure.pdb
 C:\Users\vjani\Desktop\projects\NugetPro\src\Nexus.Core.Infrastructure\obj\Release\net10.0\ref\Nexus.Core.Infrastructure.dll
+C:\Users\vjani\Desktop\projects\NugetPro\src\Nexus.Core.Infrastructure\obj\Release\net10.0\Nexus.Core.Infrastructure.sourcelink.json

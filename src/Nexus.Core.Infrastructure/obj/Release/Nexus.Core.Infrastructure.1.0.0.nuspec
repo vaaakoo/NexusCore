@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Nexus.Core.Infrastructure</id>
+    <version>1.0.0</version>
+    <authors>Vako Janikashvili</authors>
+    <description>A senior-level production-grade infrastructure framework for .NET 10 featuring structured logging, PII masking, and functional result patterns.</description>
+    <repository type="git" url="https://github.com/vaoakoo/NexusCore" commit="8c228bae5ff3fe716070aa595c6ddc40c65c0806" />
+    <dependencies>
+      <group targetFramework="net10.0">
+        <dependency id="FluentValidation.DependencyInjectionExtensions" version="12.1.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.AspNetCore.Authentication.JwtBearer" version="10.0.6" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.AspNetCore.OpenApi" version="10.0.6" exclude="Build,Analyzers" />
+        <dependency id="Polly" version="8.6.6" exclude="Build,Analyzers" />
+        <dependency id="Serilog.AspNetCore" version="10.0.0" exclude="Build,Analyzers" />
+        <dependency id="Serilog.Enrichers.Environment" version="3.0.1" exclude="Build,Analyzers" />
+        <dependency id="Serilog.Enrichers.Thread" version="4.0.0" exclude="Build,Analyzers" />
+        <dependency id="Serilog.Exceptions" version="8.4.0" exclude="Build,Analyzers" />
+        <dependency id="Serilog.Exceptions.EntityFrameworkCore" version="8.4.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <frameworkReferences>
+      <group targetFramework="net10.0">
+        <frameworkReference name="Microsoft.AspNetCore.App" />
+      </group>
+    </frameworkReferences>
+  </metadata>
+  <files>
+    <file src="C:\Users\vjani\Desktop\projects\NugetPro\src\Nexus.Core.Infrastructure\bin\Release\net10.0\Nexus.Core.Infrastructure.dll" target="lib\net10.0\Nexus.Core.Infrastructure.dll" />
+  </files>
+</package>
