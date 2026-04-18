@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PackageId>Nexus.Core.Infrastructure</PackageId>
-    <Version>1.0.0</Version>
+    <Version>1.1.0</Version>
     <Authors>Vako Janikashvili</Authors>
     <RepositoryUrl>https://github.com/vaaakoo/NexusCore</RepositoryUrl>
     <Description>A senior-level production-grade infrastructure framework for .NET 10 featuring structured logging, PII masking, and functional result patterns.</Description>
