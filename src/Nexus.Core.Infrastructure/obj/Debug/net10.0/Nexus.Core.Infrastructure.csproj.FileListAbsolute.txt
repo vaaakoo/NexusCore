@@ -1,0 +1,12 @@
+C:\Users\vjani\Desktop\projects\NugetPro\src\Nexus.Core.Infrastructure\bin\Debug\net10.0\Nexus.Core.Infrastructure.deps.json
+C:\Users\vjani\Desktop\projects\NugetPro\src\Nexus.Core.Infrastructure\bin\Debug\net10.0\Nexus.Core.Infrastructure.dll
+C:\Users\vjani\Desktop\projects\NugetPro\src\Nexus.Core.Infrastructure\bin\Debug\net10.0\Nexus.Core.Infrastructure.pdb
+C:\Users\vjani\Desktop\projects\NugetPro\src\Nexus.Core.Infrastructure\obj\Debug\net10.0\Nexus.Core.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\vjani\Desktop\projects\NugetPro\src\Nexus.Core.Infrastructure\obj\Debug\net10.0\Nexus.Core.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vjani\Desktop\projects\NugetPro\src\Nexus.Core.Infrastructure\obj\Debug\net10.0\Nexus.Core.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\vjani\Desktop\projects\NugetPro\src\Nexus.Core.Infrastructure\obj\Debug\net10.0\Nexus.Core.Infrastructure.AssemblyInfo.cs
+C:\Users\vjani\Desktop\projects\NugetPro\src\Nexus.Core.Infrastructure\obj\Debug\net10.0\Nexus.Core.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\vjani\Desktop\projects\NugetPro\src\Nexus.Core.Infrastructure\obj\Debug\net10.0\Nexus.Core.Infrastructure.dll
+C:\Users\vjani\Desktop\projects\NugetPro\src\Nexus.Core.Infrastructure\obj\Debug\net10.0\refint\Nexus.Core.Infrastructure.dll
+C:\Users\vjani\Desktop\projects\NugetPro\src\Nexus.Core.Infrastructure\obj\Debug\net10.0\Nexus.Core.Infrastructure.pdb
+C:\Users\vjani\Desktop\projects\NugetPro\src\Nexus.Core.Infrastructure\obj\Debug\net10.0\ref\Nexus.Core.Infrastructure.dll
