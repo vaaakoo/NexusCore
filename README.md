@@ -9,6 +9,8 @@ Nexus.Core is a high-performance, production-grade infrastructure library for .N
 - **Structured Logging**: Pre-configured Serilog integration with daily-rolling file sinks and PII masking.
 - **PII Protection**: Integrated data masking for both log streams and JSON API responses using the `[SensitiveData]` attribute and `LogMaskingEnricher`.
 - **Standardized Security**: Robust JWT Bearer authentication and authorization with custom rejection handlers.
+- **Observability Stack**: Built-in **OpenTelemetry** support for distributed tracing and technical metrics (Runtime, HTTP).
+- **Enterprise Resilience**: Pre-configured **Polly v8** pipelines featuring retry strategies, circuit breakers, and SLA timeouts.
 - **Functional Error Handling**: Implementation of the `Result<T>` pattern to facilitate Railway Oriented Programming and consistent API contracts.
 - **Global Exception Management**: Centralized middleware to intercept unhandled exceptions, ensuring secure error reporting and automated diagnostic logging (TraceId).
 
@@ -83,6 +85,16 @@ public Result<User> ProcessUser(Guid id) =>
     _repository.Get(id)
         .Map(user => ApplyBusinessRules(user))
         .Bind(user => SaveChanges(user));
+```
+
+### Observability & Resilience
+The framework automatically instrumentals your application. Use the pre-configured standard pipeline for resilient downstream calls:
+```csharp
+// Example using the built-in resilience pipeline
+var pipeline = serviceProvider.GetRequiredService<ResiliencePipelineProvider<string>>()
+    .GetPipeline("nexus-standard");
+
+await pipeline.ExecuteAsync(async token => await externalService.CallAsync(token));
 ```
 
 ---
