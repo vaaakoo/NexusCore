@@ -7,6 +7,9 @@ using Nexus.Core.Infrastructure.Logging;
 using Nexus.Core.Infrastructure.Logging.Json;
 using Nexus.Core.Infrastructure.Middleware;
 using Nexus.Core.Infrastructure.Security;
+using Nexus.Core.Infrastructure.Resilience;
+using Nexus.Core.Infrastructure.Observability;
+using Nexus.Core.Infrastructure.Common.Serialization;
 using Serilog;
 using System.Reflection;
 using System.Text.Json;
@@ -48,16 +51,18 @@ public static class ServiceCollectionExtensions
         services
             .AddNexusLogging(config, environment)   // → Serilog
             .AddNexusSecurity(config)               // → JWT Bearer + Authorization
+            .AddNexusObservability(environment)     // → OpenTelemetry
+            .AddNexusResilience()                   // → Polly v8 Pipelines
             .AddHttpContextAccessor()               // → IHttpContextAccessor
             .AddOpenApi();                          // → OpenAPI / Scalar metadata
 
         // ── Senior Addition: JSON Masking ────────────────────────────────────
         services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options =>
         {
-            options.SerializerOptions.TypeInfoResolver = new DefaultJsonTypeInfoResolver
-            {
-                Modifiers = { NexusMaskingPolicy.MaskSensitiveProperties }
-            };
+            options.SerializerOptions.TypeInfoResolver = JsonTypeInfoResolver.Combine(
+                new NexusJsonContext(),
+                new DefaultJsonTypeInfoResolver { Modifiers = { NexusMaskingPolicy.MaskSensitiveProperties } }
+            );
         });
 
         // ── Senior Addition: Validation & Resilience ─────────────────────────
@@ -86,16 +91,18 @@ public static class ServiceCollectionExtensions
             .AddNexusLogging()                              // host-level Serilog wiring
             .Services
             .AddNexusSecurity(builder.Configuration)       // JWT Bearer + Authorization
+            .AddNexusObservability(builder.Environment)    // OpenTelemetry
+            .AddNexusResilience()                          // Polly v8 Pipelines
             .AddHttpContextAccessor()                       // IHttpContextAccessor
             .AddOpenApi();                                  // OpenAPI / Scalar metadata
 
         // ── Senior Addition: JSON Masking ────────────────────────────────────
         builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options =>
         {
-            options.SerializerOptions.TypeInfoResolver = new DefaultJsonTypeInfoResolver
-            {
-                Modifiers = { NexusMaskingPolicy.MaskSensitiveProperties }
-            };
+            options.SerializerOptions.TypeInfoResolver = JsonTypeInfoResolver.Combine(
+                new NexusJsonContext(),
+                new DefaultJsonTypeInfoResolver { Modifiers = { NexusMaskingPolicy.MaskSensitiveProperties } }
+            );
         });
         // ── Senior Addition: Validation ──────────────────────────────────────
         builder.Services.AddValidatorsFromAssemblies(new[] { 
