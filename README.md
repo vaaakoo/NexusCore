@@ -1,16 +1,6 @@
 # Nexus.Core — Senior-Level .NET 10 Infrastructure Framework
 
-<<<<<<< HEAD
 ![Build Status](https://github.com/vaaakoo/NexusCore/actions/workflows/ci.yml/badge.svg)
-
-> **"The Antigravity Effect"** — collapse an entire enterprise-grade infrastructure stack down to a single, expressive line of code.
-=======
-![Build Status](https://github.com/vaoakoo/NexusCore/actions/workflows/ci-cd.yml/badge.svg)
-![License](https://img.shields.io/github/license/vaoakoo/NexusCore)
-![.NET Version](https://img.shields.io/badge/.NET-10-blue)
-
-> **"The Antigravity Effect"** — collapse an entire enterprise infrastructure stack down to a single, expressive line of code.
->>>>>>> 1684a35c89523670dc92f0089c1608ccd7d412eb
 
 ```csharp
 // Program.cs — that's literally it.
